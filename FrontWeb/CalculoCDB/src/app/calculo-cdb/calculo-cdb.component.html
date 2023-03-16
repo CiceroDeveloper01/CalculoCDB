@@ -1,0 +1,9 @@
+<div>
+    <form (formGroup) = "formCalculoInvestimento">
+        <label>Valor Inicial Investimento:</label>
+        <input type="text" formControlName="valorInicialInvestimento"/>
+        <label>Prazo Investimento:</label>
+        <input type="text" formControlName="prazoInvestimento"/>
+        <button type="button" (click)="efetuarCalculoCDB()">Enviar</button>
+    </form>
+</div>

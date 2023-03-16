@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>a6dbda36-938b-4138-957b-f64c88bdef0f</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>.</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CalculoCDBDomain\CalculoCDBDomain.csproj" />
+    <ProjectReference Include="..\CalculoCDBRepository\CalculoCDBRepository.csproj" />
+    <ProjectReference Include="..\CalculoCDBService\CalculoCDBService.csproj" />
+  </ItemGroup>
+
+</Project>
