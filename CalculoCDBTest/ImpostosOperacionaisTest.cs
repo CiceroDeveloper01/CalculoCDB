@@ -13,49 +13,11 @@ namespace CalculoCDBTest
     [TestClass]
     public class ImpostosOperacionaisTest
     {
-        public readonly IImpostosOperacionaisRepository _mockImpostosOperacionaisRepository;
+        public readonly IRepositoryBase<ImpostosOperacionais> _mockImpostosOperacionaisRepository;
 
         public ImpostosOperacionaisTest()
         {
-            IList<ImpostosOperacionais> impostosOperacionais = new List<ImpostosOperacionais>();
-            impostosOperacionais.Add(new ImpostosOperacionais { ID = 1, TempoCalculado = EImpostosTempoInvestimento.AteSeisMeses.ToString("G"), PrazoInicialCalculo = 1, PrazoFinalCalculo = 6, ValorImposto = 22.50, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now }); ;
-            impostosOperacionais.Add(new ImpostosOperacionais { ID = 2, TempoCalculado = EImpostosTempoInvestimento.AteDozeMeses.ToString("G"), PrazoInicialCalculo = 7, PrazoFinalCalculo = 12, ValorImposto = 22.00, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now });
-            impostosOperacionais.Add(new ImpostosOperacionais { ID = 3, TempoCalculado = EImpostosTempoInvestimento.AteVinteQuatroMeses.ToString("G"), PrazoInicialCalculo = 13, PrazoFinalCalculo = 24, ValorImposto = 17.50, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now });
-            impostosOperacionais.Add(new ImpostosOperacionais { ID = 4, TempoCalculado = EImpostosTempoInvestimento.Acima24Meses.ToString("G"), PrazoInicialCalculo = 25, PrazoFinalCalculo = 1000, ValorImposto = 15.00, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now });
-
-            Mock<IImpostosOperacionaisRepository> mockImpostosOperacionaisRepository = new Mock<IImpostosOperacionaisRepository>();
-
-            mockImpostosOperacionaisRepository.Setup(x => x.GetAll()).Returns(Task.FromResult((IEnumerable<ImpostosOperacionais>)impostosOperacionais));
-
-            mockImpostosOperacionaisRepository.Setup(x => x.GetById(It.IsAny<int>())).Returns((int i) => Task.FromResult(impostosOperacionais.Where(x => x.ID == i).Single()));
-
-            mockImpostosOperacionaisRepository.Setup(mr => mr.Add(It.IsAny<ImpostosOperacionais>())).Returns(
-                (ImpostosOperacionais target) =>
-                {
-                    DateTime now = DateTime.Now;
-                    if (target.ID.Equals(default(int)))
-                    {
-                        target.DataCriacao = now;
-                        target.DataAlteracao = now;
-                        target.ID = impostosOperacionais.Count() + 1;
-                        impostosOperacionais.Add(target);
-                    }
-                    else
-                    {
-                        var original = impostosOperacionais.Where(q => q.ID == target.ID).Single();
-                        if (original == null)
-                            return Task.FromResult(false);
-                        original.PrazoInicialCalculo = target.PrazoInicialCalculo;
-                        original.PrazoFinalCalculo = target.PrazoFinalCalculo;
-                        original.TempoCalculado = target.TempoCalculado;
-                        original.ValorImposto = target.ValorImposto;
-                        original.DataAlteracao = now;
-                    }
-                    return Task.FromResult(true);
-                });
-
-            mockImpostosOperacionaisRepository.Setup(mr => mr.Remove(It.IsAny<ImpostosOperacionais>()));
-
+            Mock<IRepositoryBase<ImpostosOperacionais>> mockImpostosOperacionaisRepository = DataFixtures.MockImpostosOperacionaisRepository();
             _mockImpostosOperacionaisRepository = mockImpostosOperacionaisRepository.Object;
         }
         [TestMethod]
@@ -83,10 +45,10 @@ namespace CalculoCDBTest
         [TestMethod]
         public void UpdateImpostos()
         {
-            ImpostosOperacionais testImpostosOperacionais = this._mockImpostosOperacionaisRepository.GetById(1).Result;
+            ImpostosOperacionais testImpostosOperacionais = this._mockImpostosOperacionaisRepository.GetById(3).Result;
             testImpostosOperacionais.PrazoFinalCalculo = 8;
             _mockImpostosOperacionaisRepository.Update(testImpostosOperacionais);
-            var updatedImpostosOperacionais = _mockImpostosOperacionaisRepository.GetById(1).Result;
+            var updatedImpostosOperacionais = _mockImpostosOperacionaisRepository.GetById(3).Result;
             Assert.AreEqual(8, updatedImpostosOperacionais.PrazoFinalCalculo);
         }
         [TestMethod]
@@ -97,6 +59,5 @@ namespace CalculoCDBTest
             var deletedImpostosOperacionais = _mockImpostosOperacionaisRepository.GetById(1).Result;
             Assert.AreEqual(null, deletedImpostosOperacionais);
         }
-
     }
 }
