@@ -16,33 +16,28 @@ namespace CalculoCDBTest
     public class EfetuarCalculoTest
     {
         IEfetuarCalculoService _efetuarCalculoService;
-        ITaxaOperacionaisService _taxaOperacionaisService;
-        IImpostoOperacionaisService _impostoOperacionaisService;
-
         public EfetuarCalculoTest()
         {
-
             Mock<IRepositoryBase<TaxasOperacionais>> mockTaxasOperacionaisRepository = DataFixtures.MockTaxasOperacionaisRepository();
-            var mockimpostosOperacionaisService = new Mock<IImpostoOperacionaisService>();
-
             var mocktaxaOperacionaisService = new TaxaOperacionaisService(mockTaxasOperacionaisRepository.Object);
-
-            _efetuarCalculoService = new EfetuarCalculoService(mockimpostosOperacionaisService.Object, mocktaxaOperacionaisService);
+            Mock<IRepositoryBase<ImpostosOperacionais>> mockImpostosOperacionaisRepository = DataFixtures.MockImpostosOperacionaisRepository();
+            var mockimpostosOperacionaisService = new ImpostosOperacionaisService(mockImpostosOperacionaisRepository.Object);
+            _efetuarCalculoService = new EfetuarCalculoService(mockimpostosOperacionaisService, mocktaxaOperacionaisService);
         }
-
         [TestMethod]
         public void TestEfetuarCalculoInvalido()
         {
             var commandResult = _efetuarCalculoService.EfetuarCalculo(new ValorInicialAplicaoDTO { ValorInicial = 15.5, PrazoInvestimento = 0}).Result;
-            Assert.Equals("Por favor, corrija os campos abaixo".ToString(), commandResult.Message.ToString());
+            Assert.AreEqual("Por favor, corrija os campos abaixo".ToString(), commandResult.Message.ToString());
         }
-
         [TestMethod]
         public void TestEfetuarCalculoValido()
         {
             var commandResult = _efetuarCalculoService.EfetuarCalculo(new ValorInicialAplicaoDTO { ValorInicial = 15.5, PrazoInvestimento = 5 }).Result;
-            Assert.Equals("Por favor, corrija os campos abaixo".ToString(), commandResult.Message.ToString());
+            var resultadoInvestimentoDTO = (ResultadoInvestimentoDTO)commandResult.Data;
+            Assert.AreEqual(141543241463.517, resultadoInvestimentoDTO.ValorBruto); 
+            Assert.AreEqual(109696012134.22568, resultadoInvestimentoDTO.ValorLiquido);
+            Assert.AreEqual(5, resultadoInvestimentoDTO.PrazoInvestimento);
         }
-
     }
 }

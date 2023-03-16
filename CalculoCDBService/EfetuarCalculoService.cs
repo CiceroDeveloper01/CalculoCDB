@@ -44,7 +44,7 @@ namespace CalculoCDBService
                                         { 
                                             PrazoInvestimento = valorInicialAplicaoDTO.PrazoInvestimento,
                                             ValorBruto = valorFinal,
-                                            ValorLiuquido = valorLiquido
+                                            ValorLiquido = valorLiquido
                                         });  
         }
         private (TaxasOperacionais, TaxasOperacionais) BuscarTaxasOperacionais()
