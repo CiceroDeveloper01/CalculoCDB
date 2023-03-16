@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculoCDBService", "Calcul
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculoCDBShared", "CalculoCDBShared\CalculoCDBShared.csproj", "{27E41E53-0AAA-4021-B3F2-C717BBA22919}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculoCDBTest", "CalculoCDBTest\CalculoCDBTest.csproj", "{6E9391D3-A23F-4A07-8B14-65AE92C0E376}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculoCDBTestCore", "CalculoCDBTest\CalculoCDBTestCore.csproj", "{6E9391D3-A23F-4A07-8B14-65AE92C0E376}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
