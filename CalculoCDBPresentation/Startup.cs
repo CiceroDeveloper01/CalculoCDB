@@ -18,7 +18,6 @@ namespace CalculoCDB
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-
         }
 
         public IConfiguration Configuration { get; }
@@ -31,6 +30,18 @@ namespace CalculoCDB
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CalculoCDB", Version = "v1" });
+            });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAngularOrigins",
+                builder =>
+                {
+                    builder.WithOrigins(
+                                        "http://localhost:4200"
+                                        )
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
+                });
             });
             ConfiguresServicesApplication(services);
             ConfiguresServicesRepository(services);
@@ -61,6 +72,8 @@ namespace CalculoCDB
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CalculoCDB v1"));
             }
+
+            app.UseCors("AllowAngularOrigins");
 
             app.UseHttpsRedirection();
 
