@@ -10,7 +10,7 @@ namespace CalculoCDBDomain.DTO
 
         public bool ValidEntity()
         {
-            if (ValorInicial < 0)
+            if (ValorInicial <= 0)
                 AddNotification("ValorInicial", "Valor Inicial de Investimento Mínímo de R$ 1,00, Por Favor, Informar um valor Maior.");
 
             if (PrazoInvestimento < 2)

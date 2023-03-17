@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "CalculoCDB": {
+    "CalculoCDBFrontEnd": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/calculo-cdb",
+            "outputPath": "dist/calculo-cdbfront-end",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "CalculoCDB:build:production"
+              "browserTarget": "CalculoCDBFrontEnd:build:production"
             },
             "development": {
-              "browserTarget": "CalculoCDB:build:development"
+              "browserTarget": "CalculoCDBFrontEnd:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,7 +71,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "CalculoCDB:build"
+            "browserTarget": "CalculoCDBFrontEnd:build"
           }
         },
         "test": {
@@ -96,6 +96,6 @@
     }
   },
   "cli": {
-    "analytics": "ac09f141-95be-46f6-be5d-145b4ba114bc"
+    "analytics": false
   }
 }

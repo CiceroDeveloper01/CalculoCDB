@@ -31,8 +31,8 @@ namespace CalculoCDBTest
         {
             var commandResult = _efetuarCalculoService.EfetuarCalculo(new ValorInicialAplicaoDTO { ValorInicial = 15.5, PrazoInvestimento = 5 }).Result;
             var resultadoInvestimentoDTO = (ResultadoInvestimentoDTO)commandResult.Data;
-            Assert.AreEqual(141543241463.517, resultadoInvestimentoDTO.ValorBruto); 
-            Assert.AreEqual(109696012134.22568, resultadoInvestimentoDTO.ValorLiquido);
+            Assert.AreEqual(16.268087186280276, resultadoInvestimentoDTO.ValorBruto); 
+            Assert.AreEqual(16.231483990111144, resultadoInvestimentoDTO.ValorLiquido);
             Assert.AreEqual(5, resultadoInvestimentoDTO.PrazoInvestimento);
         }
     }

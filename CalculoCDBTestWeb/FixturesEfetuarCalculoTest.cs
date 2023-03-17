@@ -26,8 +26,8 @@ namespace CalculoCDBTestWeb
             var commandResult = JsonConvert.DeserializeObject<CommandResult>(resposta);
             var resultadoInvestimentoDTO = JsonConvert.DeserializeObject<ResultadoInvestimentoDTO>(commandResult.Data.ToString());
             Assert.True(requisicao.IsSuccessStatusCode);
-            Assert.Equal(141543241463.517, resultadoInvestimentoDTO.ValorBruto);
-            Assert.Equal(109696012134.22568, resultadoInvestimentoDTO.ValorLiquido);
+            Assert.Equal(16.268087186280276, resultadoInvestimentoDTO.ValorBruto);
+            Assert.Equal(16.231483990111144, resultadoInvestimentoDTO.ValorLiquido);
             Assert.Equal(5, resultadoInvestimentoDTO.PrazoInvestimento);
         }
 

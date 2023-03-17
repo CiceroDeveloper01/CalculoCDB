@@ -35,10 +35,10 @@ namespace CalculoCDBService
             valorInicial = valorInicialAplicaoDTO.ValorInicial;
             for(int i = 1; i <= valorInicialAplicaoDTO.PrazoInvestimento; i++)
             {
-                valorFinal = valorInicial * (1 + (taxasOperacionais.Item1.ValorTaxa * taxasOperacionais.Item2.ValorTaxa));
+                valorFinal = valorInicial * (1 + ((taxasOperacionais.Item1.ValorTaxa/100) * (taxasOperacionais.Item2.ValorTaxa/100)));
                 valorInicial = valorFinal;
             }
-            valorLiquido = valorFinal - ((valorFinal / 100) * impostosOperacionais);
+            valorLiquido = valorFinal - ((valorFinal / 100) * (impostosOperacionais/100));
             return new CommandResult(true, "O resultado dos Investimentos são", 
                                      new ResultadoInvestimentoDTO 
                                         { 
