@@ -50,14 +50,18 @@ namespace CalculoCDBService
         private (TaxasOperacionais, TaxasOperacionais) BuscarTaxasOperacionais()
         {
             var taxas =  _taxaOperacionaisService.GetAll().Result;
-            var taxaCDI = taxas.Where(x => x.TipoTaxa == ETaxasOperacionais.CDI.ToString("G")).FirstOrDefault();
-            var taxaTB = taxas.Where(x => x.TipoTaxa == ETaxasOperacionais.TB.ToString("G")).FirstOrDefault();
+            var taxaCDI = taxas.FirstOrDefault(x => x.TipoTaxa == ETaxasOperacionais.CDI.ToString("G"));
+            var taxaTB = taxas.FirstOrDefault(x => x.TipoTaxa == ETaxasOperacionais.TB.ToString("G"));
             return (taxaCDI, taxaTB);
         }
         private double BuscaImpostoInvestimento(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
         {
             var impostosOperacionais = _impostoOperacionaisService.GetAll().Result;
-            return impostosOperacionais.Where(x => valorInicialAplicaoDTO.PrazoInvestimento >= x.PrazoInicialCalculo  && valorInicialAplicaoDTO.PrazoInvestimento <= x.PrazoFinalCalculo).FirstOrDefault().ValorImposto;
+            var impostoOperacional = impostosOperacionais.FirstOrDefault(x => valorInicialAplicaoDTO.PrazoInvestimento >= x.PrazoInicialCalculo && valorInicialAplicaoDTO.PrazoInvestimento <= x.PrazoFinalCalculo);
+            double valorImposto = 0;
+            if (impostoOperacional != null)
+                valorImposto = impostoOperacional.ValorImposto;
+            return valorImposto;
         }
     }
 }
