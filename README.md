@@ -13,3 +13,4 @@ Ele terá um formulário simples onde se conecta com a API e realiza a proposta 
 
 Observações Gerais
 Mesmo estando num único GIT, por favor, rodar o Visual Studio para c# e executar o projeto Angular por linha de comando.
+Para analise do código Sonar https://sonarcloud.io/summary/overall?id=CiceroDeveloper01_CalculoCDB e token b9751018ac219e2d593af781d41bb2c1c332437f
