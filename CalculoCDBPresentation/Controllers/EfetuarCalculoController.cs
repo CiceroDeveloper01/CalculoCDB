@@ -10,13 +10,10 @@ namespace CalculoCDB.Controllers
     [Route("[controller]")]
     public class EfetuarCalculoController : ControllerBase
     {
-
-        private readonly ILogger<EfetuarCalculoController> _logger;
         private readonly IEfetuarCalculoService _efetuarCalculoService;
 
-        public EfetuarCalculoController(ILogger<EfetuarCalculoController> logger, IEfetuarCalculoService efetuarCalculoService)
+        public EfetuarCalculoController(IEfetuarCalculoService efetuarCalculoService)
         {
-            _logger = logger;
             _efetuarCalculoService = efetuarCalculoService;
         }
 

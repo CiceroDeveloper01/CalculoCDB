@@ -12,8 +12,8 @@ namespace CalculoCDBRepository.Base
 {
     public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly string BancoCreatePathTest = @"C:\Testes\CDB.db";
-        private readonly string BancoAccessPathTest = @"Data Source=c:\\Testes\\CDB.db;";
+        const string BancoCreatePathTest = @"C:\Testes\CDB.db";
+        const string BancoAccessPathTest = @"Data Source=c:\\Testes\\CDB.db;";
 
 
         #region "Public Methods"
@@ -50,21 +50,21 @@ namespace CalculoCDBRepository.Base
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.Message);
             }
         }
-        public async Task CreateTable(string nameTable)
+        public async Task CreateTable(string commandCreateTable)
         {
             try
             {
                 using (var cmd = new SqliteConnection(BancoAccessPathTest))
                 {
-                    await cmd.ExecuteAsync(nameTable);
+                    await cmd.ExecuteAsync(commandCreateTable);
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.Message);
             }
         }
         public async Task Dispose()
