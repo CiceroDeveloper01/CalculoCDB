@@ -1,0 +1,19 @@
+{
+  "ServerUri": "https://sonarcloud.io/",
+  "Organization": {
+    "Key": "cicerodeveloper01",
+    "Name": "CiceroDeveloper01"
+  },
+  "ProjectKey": "CiceroDeveloper01_CalculoCDB",
+  "ProjectName": "CalculoCDB",
+  "Profiles": {
+    "Secrets": {
+      "ProfileKey": "AYbtFWy3o-CIKcLfEeEE",
+      "ProfileTimestamp": "2023-01-25T09:40:14Z"
+    },
+    "CSharp": {
+      "ProfileKey": "AYbtFWy3o-CIKcLfEeEY",
+      "ProfileTimestamp": "2023-03-09T14:55:47Z"
+    }
+  }
+}

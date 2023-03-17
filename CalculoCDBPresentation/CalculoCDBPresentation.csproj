@@ -5,7 +5,12 @@
     <UserSecretsId>a6dbda36-938b-4138-957b-f64c88bdef0f</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <DockerfileContext>.</DockerfileContext>
+    <CodeAnalysisRuleSet>..\.sonarlint\cicerodeveloper01_calculocdbcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\cicerodeveloper01_calculocdb\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.11.1" />
