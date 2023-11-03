@@ -8,6 +8,6 @@ export class CalculoCDBService {
   constructor(private http: HttpClient) { }
 
   postEfetuarCalculoCDB(valorInicialAplicacao: ValorInicialAplicacao): Observable<any> {
-    return this.http.post("https://localhost:44344/v1/Calcular", valorInicialAplicacao);
+    return this.http.post("https://localhost:44344/v1/EfetuarCalculo/Calcular", valorInicialAplicacao);
   }
 }

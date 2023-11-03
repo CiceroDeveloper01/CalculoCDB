@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using CalculoCDBRepository;
 using CalculoCDBService;
 using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Options;
 
 [assembly: InternalsVisibleTo("CalculoCDBTestWeb")]
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,13 @@ builder.Services.AddDIRepository(stringConnection);
 
 builder.Services.AddDIService();
 
+builder.Services.AddCors(options => {
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+    });
+});
+
 builder.Services.AddMvc()
 .AddJsonOptions(options => {
     options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
@@ -38,6 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors();
 
 app.UseSerilogRequestLogging();
 

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace CalculoCDB.Controllers;
 
 [ApiController]
-[Route("v1/")]
+[Route("v1/[controller]")]
 public class EfetuarCalculoController : ControllerBase
 {
     private readonly IEfetuarCalculoService _efetuarCalculoService;
