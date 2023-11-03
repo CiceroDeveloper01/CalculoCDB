@@ -2,8 +2,9 @@
 Cálculo de Investimentos CDB
 
 Visual Studio - WebpAI
-Para o projeto WebApi rodar é necessário ter NetCore 5.0 instalado;
-Na classe RepositoryBase.cs nas linhas 15 e 16 alter o caminho do Path para instalar o banco SQLLite;
+Para o projeto WebApi rodar é necessário ter NetCore 7.0 instalado;
+No arquivo JSON appsettings.Development deverá colocar o caminho que o banco SQLLITE deve ser criado e chamdo;
+No arquivo JSON appsettings.Development deverá colocar o caminho a onde o log será armazenado;
 
 ANGULAR
 Para o projeto Angular ser executado foi desenvolvido no Node.js version  v19.7.0
