@@ -11,6 +11,7 @@ Para o projeto Angular ser executado foi desenvolvido no Node.js version  v19.7.
 No arquivo calculo-cdb.service.ts --> Verificar na linha 11 se o seu computador colocou a API neteste path https://localhost:44344/EfetuarCalculo, caso não 
 tenha feito, por favor ajustar.
 Ele terá um formulário simples onde se conecta com a API e realiza a proposta dos exercício.
+Mesmo o projeto estando dentro da Solution abri o VisualStudioCode e rodar a pasta CalculoCDBFrontWeb no terminal com ng server
 
 Observações Gerais
 Mesmo estando num único GIT, por favor, rodar o Visual Studio para c# e executar o projeto Angular por linha de comando.
