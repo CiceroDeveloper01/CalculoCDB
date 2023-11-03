@@ -2,7 +2,7 @@
 using CalculoCDBShared.Commands;
 using System.Threading.Tasks;
 
-namespace CalculoCDBService.Inferfaces;
+namespace CalculoCDBDomain.Inferfaces;
 
 public interface IEfetuarCalculoService
 {

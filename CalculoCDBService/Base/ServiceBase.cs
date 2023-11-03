@@ -1,10 +1,10 @@
-﻿using CalculoCDBService.Inferfaces;
-using CalculoCDBService.Inferfaces.Repository;
+﻿using CalculoCDBDomain.Inferfaces;
+using CalculoCDBDomain.Inferfaces.Repository;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CalculoCDBService;
+namespace CalculoCDBService.Base;
 
 public class ServiceBase<TEntity> : IDisposable, IServiceBase<TEntity> where TEntity : class
 {

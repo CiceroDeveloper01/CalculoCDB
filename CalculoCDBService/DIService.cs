@@ -1,4 +1,6 @@
-﻿using CalculoCDBService.Inferfaces;
+﻿using CalculoCDBDomain.Inferfaces;
+using CalculoCDBService.Base;
+using CalculoCDBService.Taxas;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CalculoCDBService;

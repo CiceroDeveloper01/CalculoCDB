@@ -6,7 +6,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using CalculoCDBRepository;
 using CalculoCDBService;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("CalculoCDBTestWeb")]
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
@@ -46,3 +48,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+public partial class Program { }

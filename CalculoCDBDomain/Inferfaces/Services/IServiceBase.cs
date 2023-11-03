@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CalculoCDBService.Inferfaces;
+namespace CalculoCDBDomain.Inferfaces;
 
 public interface IServiceBase<TEntity> where TEntity : class 
 {

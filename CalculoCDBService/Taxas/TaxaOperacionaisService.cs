@@ -1,16 +1,21 @@
 ﻿using CalculoCDBDomain.Enums;
+using CalculoCDBDomain.Inferfaces;
+using CalculoCDBDomain.Inferfaces.Repository;
 using CalculoCDBDomain.Taxas;
-using CalculoCDBService.Inferfaces;
-using CalculoCDBService.Inferfaces.Repository;
+using CalculoCDBService.Base;
+using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
-namespace CalculoCDBService;
+namespace CalculoCDBService.Taxas;
 
 public class TaxaOperacionaisService : ServiceBase<TaxasOperacionais>, ITaxaOperacionaisService
 {
     private readonly IRepositoryBase<TaxasOperacionais> _repositoryBase;
-    public TaxaOperacionaisService(IRepositoryBase<TaxasOperacionais> repositoryBase) : base(repositoryBase)
+    private readonly ILogger<TaxaOperacionaisService> _logger;
+    public TaxaOperacionaisService(IRepositoryBase<TaxasOperacionais> repositoryBase,
+                                   ILogger<TaxaOperacionaisService> logger) : base(repositoryBase)
     {
+        _logger = logger;
         _repositoryBase = repositoryBase;
         CreateTabletemporary();
         PopulateImpostosOperacionais();
@@ -21,7 +26,13 @@ public class TaxaOperacionaisService : ServiceBase<TaxasOperacionais>, ITaxaOper
     /// </summary>
     private void CreateTabletemporary()
     {
-        var commandCreate = "CREATE TABLE IF NOT EXISTS tb_TaxasOperacionais(Id int, TipoTaxa VarChar(100), ValorTaxa double, DataAlteracao DateTime, DataCriacao DateTime)";
+        _logger.LogInformation($@"Executando a Service: {typeof(TaxaOperacionaisService)} e o Método: CreateTabletemporary");
+        var commandCreate = @$"CREATE TABLE 
+                                   IF NOT EXISTS tb_TaxasOperacionais(Id int
+                                                                    , TipoTaxa VarChar(100)
+                                                                    , ValorTaxa double
+                                                                    , DataAlteracao DateTime
+                                                                    , DataCriacao DateTime)";
         _repositoryBase.CreateTable(commandCreate);
     }
 
@@ -31,10 +42,11 @@ public class TaxaOperacionaisService : ServiceBase<TaxasOperacionais>, ITaxaOper
     /// </summary>
     private void PopulateImpostosOperacionais()
     {
+        _logger.LogInformation($@"Executando a Service: {typeof(TaxaOperacionaisService)} e o Método: PopulateImpostosOperacionais");
         List<TaxasOperacionais> taxasOperacionais = new List<TaxasOperacionais>();
         taxasOperacionais.Add(new TaxasOperacionais { ID = 1, TipoTaxa = ETaxasOperacionais.TB.ToString("G"), ValorTaxa = 108.00, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now });
         taxasOperacionais.Add(new TaxasOperacionais { ID = 2, TipoTaxa = ETaxasOperacionais.CDI.ToString("G"), ValorTaxa = 0.9, DataAlteracao = System.DateTime.Now, DataCriacao = System.DateTime.Now });
-        foreach(var taxaOperacional in taxasOperacionais)
+        foreach (var taxaOperacional in taxasOperacionais)
         {
             var taxaOperacionalLocalizada = _repositoryBase.GetById(taxaOperacional.ID).Result;
             if (taxaOperacionalLocalizada == null)

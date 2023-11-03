@@ -1,6 +1,6 @@
 ﻿using CalculoCDBDomain.Enums;
+using CalculoCDBDomain.Inferfaces.Repository;
 using CalculoCDBDomain.Taxas;
-using CalculoCDBService.Inferfaces.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Collections.Generic;

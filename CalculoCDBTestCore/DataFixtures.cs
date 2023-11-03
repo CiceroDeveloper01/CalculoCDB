@@ -1,6 +1,6 @@
 ﻿using CalculoCDBDomain.Enums;
+using CalculoCDBDomain.Inferfaces.Repository;
 using CalculoCDBDomain.Taxas;
-using CalculoCDBService.Inferfaces.Repository;
 using Moq;
 using System;
 using System.Collections.Generic;

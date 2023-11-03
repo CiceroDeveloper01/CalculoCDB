@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace CalculoCDBService.Inferfaces.Repository;
+namespace CalculoCDBDomain.Inferfaces.Repository;
 
 public interface IRepositoryBase<TEntity> where TEntity : class
 {

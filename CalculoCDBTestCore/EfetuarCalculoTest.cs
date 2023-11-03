@@ -1,8 +1,9 @@
 ﻿using CalculoCDBDomain.DTO;
+using CalculoCDBDomain.Inferfaces;
+using CalculoCDBDomain.Inferfaces.Repository;
 using CalculoCDBDomain.Taxas;
-using CalculoCDBService;
-using CalculoCDBService.Inferfaces;
-using CalculoCDBService.Inferfaces.Repository;
+using CalculoCDBService.Taxas;
+using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
@@ -15,10 +16,18 @@ public class EfetuarCalculoTest
     public EfetuarCalculoTest()
     {
         Mock<IRepositoryBase<TaxasOperacionais>> mockTaxasOperacionaisRepository = DataFixtures.MockTaxasOperacionaisRepository();
-        var mocktaxaOperacionaisService = new TaxaOperacionaisService(mockTaxasOperacionaisRepository.Object);
+        var mockloggerTaxa = new Mock<ILogger<TaxaOperacionaisService>>();
+        var mocktaxaOperacionaisService = new TaxaOperacionaisService(mockTaxasOperacionaisRepository.Object, mockloggerTaxa.Object);
+        
         Mock<IRepositoryBase<ImpostosOperacionais>> mockImpostosOperacionaisRepository = DataFixtures.MockImpostosOperacionaisRepository();
-        var mockimpostosOperacionaisService = new ImpostosOperacionaisService(mockImpostosOperacionaisRepository.Object);
-        _efetuarCalculoService = new EfetuarCalculoService(mockimpostosOperacionaisService, mocktaxaOperacionaisService);
+        var mockloggerImposto = new Mock<ILogger<ImpostosOperacionaisService>>();
+        var mockimpostosOperacionaisService = new ImpostosOperacionaisService(mockImpostosOperacionaisRepository.Object, mockloggerImposto.Object);
+
+
+        var mockloggerCalculo = new Mock<ILogger<EfetuarCalculoService>>();
+        _efetuarCalculoService = new EfetuarCalculoService(mockimpostosOperacionaisService,
+                                                           mocktaxaOperacionaisService,
+                                                           mockloggerCalculo.Object);
     }
     [TestMethod]
     public void TestEfetuarCalculoInvalido()
