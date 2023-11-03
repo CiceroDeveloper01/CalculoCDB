@@ -26,7 +26,7 @@ public class EfetuarCalculoController : ControllerBase
 
     [HttpPost]
     [Route("Calcular")]
-    public async Task<IActionResult> Post(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
+    public async Task<IActionResult> Post(ValorInicialAplicaoDto valorInicialAplicaoDTO)
     {
         try
         {

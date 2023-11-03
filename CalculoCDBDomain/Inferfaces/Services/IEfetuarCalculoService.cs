@@ -6,5 +6,5 @@ namespace CalculoCDBDomain.Inferfaces;
 
 public interface IEfetuarCalculoService
 {
-    Task<ICommandResult> EfetuarCalculo(ValorInicialAplicaoDTO valorInicialAplicaoDTO);
+    Task<ICommandResult> EfetuarCalculo(ValorInicialAplicaoDto valorInicialAplicaoDTO);
 }

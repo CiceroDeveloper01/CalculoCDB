@@ -22,10 +22,10 @@ public class FixturesEfetuarCalculoTest
     [Fact(DisplayName = "Efetuar o Calculo da API")]
     public async Task EfetuaCalculoExito()
     {
-        var requisicao = await _httpClient.PostAsJsonAsync($"v1/Calcular/", new ValorInicialAplicaoDTO { PrazoInvestimento = 5, ValorInicial = 15.5 });
+        var requisicao = await _httpClient.PostAsJsonAsync($"v1/Calcular/", new ValorInicialAplicaoDto { PrazoInvestimento = 5, ValorInicial = 15.5 });
         var resposta = await requisicao.Content.ReadAsStringAsync();
         var comandoResulte = JsonConvert.DeserializeObject<CommandResult>(resposta);
-        var resultadoInvestimentoDTO = JsonConvert.DeserializeObject<ResultadoInvestimentoDTO>(comandoResulte.Data.ToString());
+        var resultadoInvestimentoDTO = JsonConvert.DeserializeObject<ResultadoInvestimentoDto>(comandoResulte.Data.ToString());
         Assert.True(requisicao.IsSuccessStatusCode);
         Assert.Equal(16.268087186280276, resultadoInvestimentoDTO.ValorBruto);
         Assert.Equal(16.231483990111144, resultadoInvestimentoDTO.ValorLiquido);
@@ -35,7 +35,7 @@ public class FixturesEfetuarCalculoTest
     [Fact(DisplayName = "Efetuar o Calculo da API Sem Exito")]
     public async Task EfetuaCalculoSemExito()
     {
-        var requisicao = await _httpClient.PostAsJsonAsync($"v1/Calcular/", new ValorInicialAplicaoDTO { PrazoInvestimento = 0, ValorInicial = 0 });
+        var requisicao = await _httpClient.PostAsJsonAsync($"v1/Calcular/", new ValorInicialAplicaoDto { PrazoInvestimento = 0, ValorInicial = 0 });
         var resposta = await requisicao.Content.ReadAsStringAsync();
         var comandoResulte = JsonConvert.DeserializeObject<CommandResult>(resposta);
         Assert.False(requisicao.IsSuccessStatusCode);

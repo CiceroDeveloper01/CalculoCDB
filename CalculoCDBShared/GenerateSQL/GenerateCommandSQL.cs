@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace CalculoCDBShared.GenerateSQL;
 
-public static class GenerateCommandSQL
+public static class GenerateCommandSql
 {
     public static PropertyContainer ParseProperties(object obj)
     {

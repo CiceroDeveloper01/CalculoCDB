@@ -3,7 +3,7 @@ using FluentValidator;
 
 namespace CalculoCDBDomain.DTO;
 
-public class ValorInicialAplicaoDTO : Notifiable, ICommand
+public class ValorInicialAplicaoDto : Notifiable, ICommand
 {
     public double ValorInicial { get; set; }
     public int PrazoInvestimento { get; set; }

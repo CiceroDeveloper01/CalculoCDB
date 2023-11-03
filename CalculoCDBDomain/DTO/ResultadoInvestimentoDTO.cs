@@ -1,6 +1,6 @@
 ﻿namespace CalculoCDBDomain.DTO;
 
-public class ResultadoInvestimentoDTO
+public class ResultadoInvestimentoDto
 {
     public int PrazoInvestimento { get; set; }
     public double ValorBruto { get; set; }

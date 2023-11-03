@@ -23,7 +23,7 @@ public class EfetuarCalculoService : IEfetuarCalculoService
         _taxaOperacionaisService = taxaOperacionaisService;
         _logger = logger;
     }
-    public async Task<ICommandResult> EfetuarCalculo(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
+    public async Task<ICommandResult> EfetuarCalculo(ValorInicialAplicaoDto valorInicialAplicaoDTO)
     {
         _logger.LogInformation($@"Iniciando a Service: {typeof(EfetuarCalculoService)} e o Método: EfetuarCalculo");
 
@@ -32,7 +32,7 @@ public class EfetuarCalculoService : IEfetuarCalculoService
         else
             return await Task.FromResult(RealizarCalculo(valorInicialAplicaoDTO));
     }
-    private ICommandResult RealizarCalculo(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
+    private ICommandResult RealizarCalculo(ValorInicialAplicaoDto valorInicialAplicaoDTO)
     {
         _logger.LogInformation($@"Executando a Service: {typeof(EfetuarCalculoService)} e o Método: RealizarCalculo");
         var taxasOperacionais = BuscarTaxasOperacionais();
@@ -48,7 +48,7 @@ public class EfetuarCalculoService : IEfetuarCalculoService
         }
         valorLiquido = valorFinal - valorFinal / 100 * (impostosOperacionais / 100);
         return new CommandResult(true, "O resultado dos Investimentos são",
-                                 new ResultadoInvestimentoDTO
+                                 new ResultadoInvestimentoDto
                                  {
                                      PrazoInvestimento = valorInicialAplicaoDTO.PrazoInvestimento,
                                      ValorBruto = valorFinal,
@@ -63,7 +63,7 @@ public class EfetuarCalculoService : IEfetuarCalculoService
         var taxaTB = taxas.FirstOrDefault(x => x.TipoTaxa == ETaxasOperacionais.TB.ToString("G"));
         return (taxaCDI, taxaTB);
     }
-    private double BuscaImpostoInvestimento(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
+    private double BuscaImpostoInvestimento(ValorInicialAplicaoDto valorInicialAplicaoDTO)
     {
         _logger.LogInformation($@"Executando a Service: {typeof(EfetuarCalculoService)} e o Método: BuscaImpostoInvestimento");
         var impostosOperacionais = _impostoOperacionaisService.GetAll().Result;

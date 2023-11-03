@@ -15,8 +15,8 @@ namespace CalculoCDBRepository.Base;
 
 public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
 {
-    string BancoCreatePathTest = "";
-    string BancoAccessPathTest = "";
+    string BancoCreatePathTest;
+    string BancoAccessPathTest;
 
     protected IConfiguration _configuration;
     private readonly ILogger<RepositoryBase<TEntity>> _logger;
@@ -55,7 +55,7 @@ public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : 
     public async Task Add(TEntity entity)
     {
         _logger.LogInformation($@"Executando o Repository: {typeof(RepositoryBase<TEntity>)} e o Método: Add");
-        var properties = GenerateCommandSQL.ParseProperties((object)entity);
+        var properties = GenerateCommandSql.ParseProperties((object)entity);
         var table = NameTable();
         var sql = string.Format("INSERT INTO [{0}] ({1}) VALUES(@{2})", table, string.Join(", ", properties.ValueNames), string.Join(", @", properties.ValueNames));
 
