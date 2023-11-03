@@ -1,6 +1,5 @@
 ﻿using CalculoCDBDomain.Taxas;
 
-namespace CalculoCDBService.Inferfaces
-{
-    public interface ITaxaOperacionaisService : IServiceBase<TaxasOperacionais>{}
-}
+namespace CalculoCDBService.Inferfaces;
+
+public interface ITaxaOperacionaisService : IServiceBase<TaxasOperacionais>{}

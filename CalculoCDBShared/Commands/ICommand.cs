@@ -1,7 +1,6 @@
-﻿namespace CalculoCDBShared
+﻿namespace CalculoCDBShared;
+
+public interface ICommand
 {
-    public interface ICommand
-    {
-        bool ValidEntity();
-    }
+    bool ValidEntity();
 }

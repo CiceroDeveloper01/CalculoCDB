@@ -1,30 +1,28 @@
 ﻿using CalculoCDBDomain.DTO;
 using CalculoCDBService.Inferfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 
-namespace CalculoCDB.Controllers
+namespace CalculoCDB.Controllers;
+
+[ApiController]
+[Route("[controller]")]
+public class EfetuarCalculoController : ControllerBase
 {
-    [ApiController]
-    [Route("[controller]")]
-    public class EfetuarCalculoController : ControllerBase
+    private readonly IEfetuarCalculoService _efetuarCalculoService;
+
+    public EfetuarCalculoController(IEfetuarCalculoService efetuarCalculoService)
     {
-        private readonly IEfetuarCalculoService _efetuarCalculoService;
+        _efetuarCalculoService = efetuarCalculoService;
+    }
 
-        public EfetuarCalculoController(IEfetuarCalculoService efetuarCalculoService)
-        {
-            _efetuarCalculoService = efetuarCalculoService;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Post(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
-        {
-            var result = await _efetuarCalculoService.EfetuarCalculo(valorInicialAplicaoDTO);
-            if (result.Success)
-                return Ok(result);
-            else 
-                return NotFound(result);
-        }
+    [HttpPost]
+    public async Task<IActionResult> Post(ValorInicialAplicaoDTO valorInicialAplicaoDTO)
+    {
+        var result = await _efetuarCalculoService.EfetuarCalculo(valorInicialAplicaoDTO);
+        if (result.Success)
+            return Ok(result);
+        else 
+            return NotFound(result);
     }
 }
