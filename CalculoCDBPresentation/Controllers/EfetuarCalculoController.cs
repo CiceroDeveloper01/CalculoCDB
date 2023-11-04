@@ -1,7 +1,6 @@
 ﻿using CalculoCDBDomain.DTO;
 using CalculoCDBDomain.Inferfaces;
 using CalculoCDBDomain.OutPutDefault;
-using CalculoCDBService.Taxas;
 using CalculoCDBShared.Enums;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

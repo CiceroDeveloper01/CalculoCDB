@@ -1,5 +1,4 @@
 ﻿using CalculoCDBDomain.Inferfaces.Repository;
-using CalculoCDBService.Taxas;
 using CalculoCDBShared.GenerateSQL;
 using Dapper;
 using Microsoft.Data.Sqlite;

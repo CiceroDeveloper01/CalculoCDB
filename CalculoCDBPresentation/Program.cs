@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using CalculoCDBRepository;
 using CalculoCDBService;
 using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Options;
 
 [assembly: InternalsVisibleTo("CalculoCDBTestWeb")]
 var builder = WebApplication.CreateBuilder(args);
